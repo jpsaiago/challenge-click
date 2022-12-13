@@ -1,23 +1,25 @@
-import React, { useState } from "react";
-import { StatusBar, Text } from "react-native";
+import React, { useContext, useState } from "react";
+import { StatusBar } from "react-native";
 import Logo from "../../../assets/svgs/logoHubusca.svg";
 import { SearchInput } from "../../components/SearchInput";
 import { SearchResult } from "../../components/SearchResult";
+import { UserContext } from "../../contexts/userContext";
 import { useDebounce } from "../../hooks/useDebounce";
 import { userApi } from "../../services/usersApi";
-import { User } from "../../types/user";
-import { LogoContainer, HomeContainer, LogoText } from "./styles";
+import { HomeContainer, LogoContainer, LogoText } from "./styles";
 
 export function Home() {
   const [input, setInput] = useState("");
-  const [user, setUser] = useState<User.profile | null>(null);
-  const [iserror, setIsError] = useState(false);
+  const { profile, setProfile } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(false);
 
   const queryUsers = useDebounce(async (text: string) => {
     if (text) {
       try {
         const response = await userApi.search(text);
-        setUser({
+        /* Se a API responder, atualiza o estado global de
+        usuário selecionado com o resultado */
+        setProfile({
           avatar_url: response.avatar_url,
           followers: response.followers,
           location: response.location,
@@ -26,17 +28,21 @@ export function Home() {
           login: response.login,
           repos_url: response.repos_url,
         });
+        setIsLoading(false);
       } catch (e) {
         if (e instanceof Error) {
-          setIsError(true);
+          setIsLoading(false);
         }
       }
     }
-  }, 500);
+  }, 800);
 
   async function handleInput(text: string) {
-    setUser(null);
+    /* Remove o resultado anterior, coloca a tela em modo de
+    carregamento e pesquisa pelo input atual do usuário */
+    setProfile(null);
     setInput(text);
+    setIsLoading(true);
     queryUsers(text);
   }
 
@@ -51,10 +57,16 @@ export function Home() {
         <SearchInput
           value={input}
           onChangeText={handleInput}
-          width="70%"
+          width="85%"
           placeholder="Insira um nome de usuário"
         />
-        {user?.login ? <SearchResult user={user} /> : null}
+        {input && (
+          <SearchResult
+            user={profile}
+            setIsLoading={setIsLoading}
+            isLoading={isLoading}
+          />
+        )}
       </HomeContainer>
     </>
   );

@@ -5,7 +5,7 @@ export const HomeContainer = styled.View`
   width: 100%;
   display: flex;
   align-items: center;
-  padding-top: 30px
+  padding-top: 50px
   background-color: ${(props) => props.theme.colors.background};
 `;
 
@@ -13,7 +13,7 @@ export const LogoContainer = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 `;
 
 export const LogoText = styled.Text`

@@ -1,5 +1,6 @@
 {
   "expo": {
+    "jsEngine": "hermes",
     "name": "HUBusca",
     "slug": "hubusca",
     "version": "0.1.0",

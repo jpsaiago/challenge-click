@@ -7,6 +7,11 @@ declare module "styled-components/native" {
       highlight: string;
       background: string;
       containerBorder?: string;
+      font?: {
+        "100": string;
+        "200": string;
+        "300": string;
+      };
     };
   }
 }
