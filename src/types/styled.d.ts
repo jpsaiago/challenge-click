@@ -6,6 +6,7 @@ declare module "styled-components/native" {
       textField: string;
       highlight: string;
       background: string;
+      containerBorder?: string;
     };
   }
 }

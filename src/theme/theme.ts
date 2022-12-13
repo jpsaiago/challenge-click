@@ -12,6 +12,7 @@ const lightTheme: DefaultTheme = {
     textField: "#DDE0E2",
     background: "white",
     highlight: "#DDE0E2",
+    containerBorder: "#D8DEE4",
   },
 };
 
