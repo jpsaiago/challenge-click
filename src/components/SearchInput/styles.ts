@@ -10,6 +10,8 @@ export const Input = styled.TextInput`
   background-color: ${(props) => props.theme.colors.textField};
   height: 100%;
   width: 90%;
+  font-family: fredoka;
+  color: ${(props) => props.theme.colors.font?.[200]};
 `;
 
 export const InputContainer = styled.View<Props>`
