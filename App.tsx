@@ -6,7 +6,7 @@ import { theme } from "./src/theme/theme";
 import { ThemeProvider } from "styled-components/native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { useCallback } from "react";
+import { useEffect } from "react";
 
 const Stack = createNativeStackNavigator();
 SplashScreen.preventAutoHideAsync();
@@ -14,17 +14,20 @@ SplashScreen.preventAutoHideAsync();
 export default function App() {
   const colorMode = useColorScheme();
   const [fontsLoaded] = useFonts({
-    "Hubot-Sans": require("./assets/fonts/Hubot-Sans.ttf"),
+    hubot: require("./assets/fonts/Hubot-Sans-MediumWide.otf"),
   });
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
+  useEffect(() => {
+    async function hideSplash() {
       await SplashScreen.hideAsync();
+    }
+    if (fontsLoaded) {
+      hideSplash();
     }
   }, [fontsLoaded]);
 
   return (
-    <NavigationContainer onReady={onLayoutRootView}>
+    <NavigationContainer>
       <ThemeProvider theme={colorMode === "dark" ? theme.dark : theme.light}>
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen

@@ -43,9 +43,23 @@ export function Home() {
     <>
       <StatusBar backgroundColor="#252E32" />
       <StyledView>
-        <View>
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "flex-end",
+          }}
+        >
           <Logo width={50} height={50} color="#838A8E" />
-          <Text style={{ fontSize: 30 }}>Hubusca</Text>
+          <Text
+            style={{
+              fontSize: 30,
+              fontFamily: "hubot",
+            }}
+          >
+            Hubusca
+          </Text>
         </View>
         <SearchInput
           value={input}
