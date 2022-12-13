@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ScrollView, StatusBar, Text } from "react-native";
+import { ScrollView, StatusBar, Text, View } from "react-native";
 import styled from "styled-components/native";
 import Logo from "../../assets/svgs/logoHubusca.svg";
 import { SearchInput } from "../components/SearchInput";
@@ -43,8 +43,10 @@ export function Home() {
     <>
       <StatusBar backgroundColor="#252E32" />
       <StyledView>
-        <Logo width={50} height={50} color="#838A8E" />
-        <Text style={{ fontSize: 30 }}>Hubusca</Text>
+        <View>
+          <Logo width={50} height={50} color="#838A8E" />
+          <Text style={{ fontSize: 30 }}>Hubusca</Text>
+        </View>
         <SearchInput
           value={input}
           onChangeText={handleInput}
