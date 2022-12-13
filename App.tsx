@@ -1,5 +1,4 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useState } from "react";
@@ -7,11 +6,10 @@ import { Text } from "react-native";
 import { useColorScheme } from "react-native/";
 import { ThemeProvider } from "styled-components/native";
 import { UserContext } from "./src/contexts/userContext";
-import { Home } from "./src/screens/Home";
+import { Routes } from "./src/Routes";
+
 import { theme } from "./src/theme/theme";
 import { User } from "./src/types/user";
-
-const Stack = createNativeStackNavigator();
 
 export default function App() {
   /* Armazena o estado do usuário atualmente selecionado no topo da árvore de componentes
@@ -38,17 +36,7 @@ export default function App() {
     <NavigationContainer>
       <ThemeProvider theme={colorMode === "dark" ? theme.dark : theme.light}>
         <UserContext.Provider value={{ profile: user, setProfile: setUser }}>
-          <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen
-              name="Home"
-              component={Home}
-              options={{
-                headerStyle: {
-                  backgroundColor: "#252E32",
-                },
-              }}
-            />
-          </Stack.Navigator>
+          <Routes />
         </UserContext.Provider>
       </ThemeProvider>
     </NavigationContainer>

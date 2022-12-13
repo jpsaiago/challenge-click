@@ -1,5 +1,7 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-
+import { Pressable } from "react-native";
+import LocationPin from "../../../assets/svgs/locationPin.svg";
 import { User } from "../../types/user";
 import {
   ErrorMessage,
@@ -11,7 +13,6 @@ import {
   ResultContainer,
   ResultPicture,
 } from "./styles";
-import LocationPin from "../../../assets/svgs/locationPin.svg";
 
 interface Props {
   user: User.profile | null;
@@ -20,6 +21,8 @@ interface Props {
 }
 
 export function SearchResult({ user, isLoading, setIsLoading }: Props) {
+  const navigation = useNavigation();
+
   if (isLoading) {
     return <ErrorMessage>carregando...</ErrorMessage>;
   }
@@ -30,10 +33,12 @@ export function SearchResult({ user, isLoading, setIsLoading }: Props) {
 
   return (
     <ResultContainer>
-      <ResultPicture
-        source={{ uri: user.avatar_url }}
-        onLoad={() => setIsLoading(false)}
-      />
+      <Pressable onPress={() => window.alert("oi")}>
+        <ResultPicture
+          source={{ uri: user.avatar_url }}
+          onLoad={() => setIsLoading(false)}
+        />
+      </Pressable>
       <InfoContainer>
         <LoginTag>{user.login}</LoginTag>
         <NameTag>{user.name ?? "-"}</NameTag>
