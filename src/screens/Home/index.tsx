@@ -1,33 +1,31 @@
 import React, { useState } from "react";
-import { ScrollView, StatusBar, Text } from "react-native";
+import { StatusBar, Text } from "react-native";
 import Logo from "../../../assets/svgs/logoHubusca.svg";
 import { SearchInput } from "../../components/SearchInput";
+import { SearchResult } from "../../components/SearchResult";
 import { useDebounce } from "../../hooks/useDebounce";
 import { userApi } from "../../services/usersApi";
-import {
-  LogoContainer,
-  HomeContainer,
-  LogoText,
-  SuggestionView,
-} from "./styles";
-import { SearchSuggestion } from "../../components/SearchSuggestion";
 import { User } from "../../types/user";
+import { LogoContainer, HomeContainer, LogoText } from "./styles";
 
 export function Home() {
   const [input, setInput] = useState("");
-  const [users, setUsers] = useState<{ login: string; imageUrl: string }[]>([]);
+  const [user, setUser] = useState<User.profile | null>(null);
   const [iserror, setIsError] = useState(false);
+
   const queryUsers = useDebounce(async (text: string) => {
-    setUsers([]);
     if (text) {
       try {
         const response = await userApi.search(text);
-        response.map((user) =>
-          setUsers((oldState) => [
-            ...oldState,
-            { login: user.login, imageUrl: user.avatar_url },
-          ])
-        );
+        setUser({
+          avatar_url: response.avatar_url,
+          followers: response.followers,
+          location: response.location,
+          name: response.name,
+          public_repos: response.public_repos,
+          login: response.login,
+          repos_url: response.repos_url,
+        });
       } catch (e) {
         if (e instanceof Error) {
           setIsError(true);
@@ -37,6 +35,7 @@ export function Home() {
   }, 500);
 
   async function handleInput(text: string) {
+    setUser(null);
     setInput(text);
     queryUsers(text);
   }
@@ -47,7 +46,7 @@ export function Home() {
       <HomeContainer>
         <LogoContainer>
           <Logo width={50} height={50} color="#838A8E" />
-          <LogoText style={{ fontFamily: "hubot" }}>hubusca</LogoText>
+          <LogoText>hubusca</LogoText>
         </LogoContainer>
         <SearchInput
           value={input}
@@ -55,15 +54,7 @@ export function Home() {
           width="70%"
           placeholder="Insira um nome de usuário"
         />
-        <SuggestionView contentContainerStyle={{ alignItems: "center" }}>
-          {users.map((user, index) => (
-            <SearchSuggestion
-              key={index}
-              login={user.login}
-              imageUrl={user.imageUrl}
-            />
-          ))}
-        </SuggestionView>
+        {user?.login ? <SearchResult user={user} /> : null}
       </HomeContainer>
     </>
   );

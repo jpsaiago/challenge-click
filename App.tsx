@@ -1,31 +1,28 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Home } from "./src/screens/Home";
-import { useColorScheme } from "react-native";
+import { useColorScheme } from "react-native/";
 import { theme } from "./src/theme/theme";
 import { ThemeProvider } from "styled-components/native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
+import { Text } from "react-native";
 
 const Stack = createNativeStackNavigator();
-SplashScreen.preventAutoHideAsync();
 
 export default function App() {
+  SplashScreen.preventAutoHideAsync();
   const colorMode = useColorScheme();
   const [fontsLoaded] = useFonts({
     hubot: require("./assets/fonts/Hubot-Sans-MediumWide.otf"),
+    fredoka: require("./assets/fonts/Fredoka-Regular.ttf"),
   });
 
-  useEffect(() => {
-    async function hideSplash() {
-      await SplashScreen.hideAsync();
-    }
-    if (fontsLoaded) {
-      hideSplash();
-    }
-  }, [fontsLoaded]);
+  if (!fontsLoaded) {
+    return <Text>Loading...</Text>;
+  }
 
+  SplashScreen.hideAsync();
   return (
     <NavigationContainer>
       <ThemeProvider theme={colorMode === "dark" ? theme.dark : theme.light}>

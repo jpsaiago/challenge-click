@@ -13,15 +13,12 @@ export const LogoContainer = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-`;
-
-export const SuggestionView = styled.ScrollView`
-  width: 100%;
-  display: flex;
+  margin-bottom: 30px;
 `;
 
 export const LogoText = styled.Text`
-  font-size: 30px;
-  color: #838A8E
   margin-left: 5px
+  font-size: 30px;
+  font-family: hubot;
+  color: #838A8E;
 `;

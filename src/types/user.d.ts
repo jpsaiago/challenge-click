@@ -1,17 +1,11 @@
 export declare namespace User {
-  interface searchResult {
-    items: {
-      avatar_url: string;
-      login: string;
-    }[];
-  }
   interface profile {
     avatar_url: string;
-    name: string;
-    username: string;
-    location: string;
-    id: number;
+    name: string | null;
+    login: string;
+    location: string | null;
     followers: number;
     public_repos: number;
+    repos_url: string;
   }
 }

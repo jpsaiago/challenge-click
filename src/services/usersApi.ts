@@ -7,12 +7,8 @@ const requester = axios.create({
 });
 
 async function search(query: string) {
-  const response = await requester.get<User.searchResult>("search/users", {
-    params: {
-      q: query,
-    },
-  });
-  return response.data.items;
+  const response = await requester.get<User.profile>(`/users/${query}`);
+  return response.data;
 }
 
 export const userApi = {
