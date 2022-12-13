@@ -1,7 +1,6 @@
-import { TextInputProps } from "react-native";
 import styled from "styled-components/native";
 
-interface Props extends TextInputProps {
+interface Props {
   width?: string;
   height?: string;
 }
