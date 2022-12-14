@@ -2,14 +2,15 @@ import styled from "styled-components/native";
 
 //Container das informações básicas do usuário
 export const BasicInfoContainer = styled.View`
-  height: 25%;
+  height: 20%;
   display: flex;
+  padding: 0px 10px
   flex-direction: row;
 `;
 
 // Dimensão e posicionamento da imagem de perfil
 export const PictureContainer = styled.View`
-  width: 40%;
+  width: 35%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -17,8 +18,8 @@ export const PictureContainer = styled.View`
 `;
 export const ProfilePicture = styled.Image`
   border-radius: 100px;
-  width: 125px;
-  height: 125px;
+  width: 110px;
+  height: 110px;
 `;
 
 //Dimensão e posicionamento das informações básicas do usuário
@@ -26,18 +27,17 @@ export const InfoTextContainer = styled.View`
   display: flex;
   justify-content: center;
   height: 100%;
-  width: 60%;
-`;
-
-export const NameTag = styled.Text`
-  font-family: fredoka;
-  font-size: 25px;
-  color: ${(props) => props.theme.colors.font?.[300]};
+  width: 65%;
 `;
 
 export const LoginTag = styled.Text`
   font-family: fredoka;
-  font-size: 30px;
+  font-size: 25px;
+  color: ${(props) => props.theme.colors.font?.[300]};
+`;
+export const NameTag = styled.Text`
+  font-family: fredoka;
+  font-size: 20px;
   color: ${(props) => props.theme.colors.font?.[300]};
 `;
 
@@ -49,9 +49,9 @@ export const LocationContainer = styled.View`
 
 export const LocationTag = styled.Text`
   font-family: fredoka;
-  font-size: 20px;
+  font-size: 16px;
   color: ${(props) => props.theme.colors.font?.[200]};
-  margin-left: 4px;
+  margin-left: 2px;
 `;
 
 //Container com detalhes do perfil do usuário

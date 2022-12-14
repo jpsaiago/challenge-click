@@ -5,7 +5,7 @@ export const HomeContainer = styled.View`
   width: 100%;
   display: flex;
   align-items: center;
-  padding-top: 50px
+  padding-top: 30px
   background-color: ${(props) => props.theme.colors.background};
 `;
 
@@ -13,7 +13,7 @@ export const LogoContainer = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 `;
 
 export const LogoText = styled.Text`
@@ -21,12 +21,6 @@ export const LogoText = styled.Text`
   font-size: 30px;
   font-family: hubot;
   color: #838A8E;
-`;
-
-export const HistoryView = styled.View`
-  width: 100%;
-  height: 100%;
-  margin-top: 15px;
 `;
 
 export const EmptyResults = styled.View`

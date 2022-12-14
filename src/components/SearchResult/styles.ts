@@ -26,6 +26,8 @@ export const ResultPicture = styled.Image`
 export const InfoContainer = styled.View`
   height: 100%;
   flex-grow: 1;
+  display: flex;
+  justify-content: center;
 `;
 
 export const NameTag = styled.Text`

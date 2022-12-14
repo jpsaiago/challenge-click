@@ -8,14 +8,8 @@ import { SearchResult } from "../../components/SearchResult";
 import { UserContext } from "../../contexts/userContext";
 import { useDebounce } from "../../hooks/useDebounce";
 import { StackParamList } from "../../Routes";
-import { userApi } from "../../services/usersApi";
-import {
-  EmptyResults,
-  HistoryView,
-  HomeContainer,
-  LogoContainer,
-  LogoText,
-} from "./styles";
+import { githubApi } from "../../services/githubApi";
+import { EmptyResults, HomeContainer, LogoContainer, LogoText } from "./styles";
 
 type HomeNavigationProp = NativeStackNavigationProp<StackParamList, "Home">;
 
@@ -28,7 +22,7 @@ export function Home() {
   const queryUsers = useDebounce(async (text: string) => {
     if (text) {
       try {
-        const response = await userApi.search(text);
+        const response = await githubApi.searchUser(text);
         /* Se a API responder, atualiza o estado global de
         usuário selecionado com o resultado */
         setProfile({
@@ -90,11 +84,6 @@ export function Home() {
         ) : (
           <EmptyResults />
         )}
-        <HistoryView>
-          <Text style={{ margin: 15, fontFamily: "hubot", color: "darkgray" }}>
-            histórico
-          </Text>
-        </HistoryView>
       </HomeContainer>
     </>
   );

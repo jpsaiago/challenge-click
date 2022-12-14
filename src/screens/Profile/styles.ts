@@ -1,5 +1,4 @@
 import styled from "styled-components/native";
-import { View } from "react-native";
 
 //Container geral da tela de Perfil
 export const ProfileView = styled.View`

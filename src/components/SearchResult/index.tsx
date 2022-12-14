@@ -53,14 +53,14 @@ export function SearchResult({ profile, isLoading, setIsLoading }: Props) {
         />
       </Pressable>
       <InfoContainer>
-        <LocationContainer>
-          <LocationTag>{profile.location ?? "-"}</LocationTag>
-          <LocationPin width={13} height={13} color="#A6A8B4" />
-        </LocationContainer>
         <View>
           <LoginTag>{profile.login}</LoginTag>
           <NameTag>{profile.name ?? "-"}</NameTag>
         </View>
+        <LocationContainer>
+          <LocationTag>{profile.location ?? "-"}</LocationTag>
+          <LocationPin width={13} height={13} color="#A6A8B4" />
+        </LocationContainer>
       </InfoContainer>
     </ResultContainer>
   );

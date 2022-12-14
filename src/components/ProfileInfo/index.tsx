@@ -31,7 +31,7 @@ export function ProfileInfo({ profile }: Props) {
           <LoginTag>{profile.login}</LoginTag>
           <NameTag>{profile.name ?? "-"}</NameTag>
           <LocationContainer>
-            <LocationPin width={18} height={18} color="#A6A8B4" />
+            <LocationPin width={14} height={14} color="#A6A8B4" />
             <LocationTag>{profile.location ?? "-"}</LocationTag>
           </LocationContainer>
         </InfoTextContainer>

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { ProfileInfo } from "../../components/ProfileInfo";
+import { RepoList } from "../../components/RepoList";
 import { UserContext } from "../../contexts/userContext";
 import { ProfileView, RepoContainer } from "./styles";
 
@@ -13,7 +14,7 @@ export function Profile() {
   return (
     <ProfileView>
       <ProfileInfo profile={profile} />
-      <RepoContainer />
+      <RepoList user={profile.login} />
     </ProfileView>
   );
 }
