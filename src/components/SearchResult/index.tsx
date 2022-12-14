@@ -28,7 +28,6 @@ interface Props {
 }
 
 export function SearchResult({ profile, isLoading, setIsLoading }: Props) {
-  const { history, setHistory } = useContext(HistoryContext);
   const { setProfile } = useContext(UserContext);
   const navigation = useNavigation<HomeNavigationProp>();
 
@@ -49,11 +48,6 @@ export function SearchResult({ profile, isLoading, setIsLoading }: Props) {
   }
 
   function handlePress() {
-    if (!history?.some((user) => user.login == profile?.login) && profile) {
-      const copy = Array.from(history);
-      copy.unshift(profile);
-      setHistory(copy);
-    }
     setProfile(profile);
     navigation.navigate("Profile");
   }

@@ -10,7 +10,13 @@ import { UserContext } from "../../contexts/userContext";
 import { useDebounce } from "../../hooks/useDebounce";
 import { StackParamList } from "../../Routes";
 import { githubApi } from "../../services/githubApi";
-import { EmptyResults, HomeContainer, LogoContainer, LogoText } from "./styles";
+import {
+  EmptyResults,
+  HistoryTitle,
+  HomeContainer,
+  LogoContainer,
+  LogoText,
+} from "./styles";
 
 type HomeNavigationProp = NativeStackNavigationProp<StackParamList, "Home">;
 
@@ -85,6 +91,7 @@ export function Home() {
         ) : (
           <EmptyResults />
         )}
+        <HistoryTitle>histórico</HistoryTitle>
         <SearchHistory />
       </HomeContainer>
     </>

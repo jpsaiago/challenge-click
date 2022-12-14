@@ -7,10 +7,3 @@ export const ProfileView = styled.View`
   display: flex;
   background-color: ${(props) => props.theme.colors.background};
 `;
-
-//Lista de Repos
-export const RepoContainer = styled.View`
-width: 100%
-height: 65%
-background-color: violet
-`;

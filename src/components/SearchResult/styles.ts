@@ -1,16 +1,16 @@
 import styled from "styled-components/native";
 
 export const ResultContainer = styled.View`
-  margin-top: 15px;
+  margin-top: 10px;
   padding: 10px 15px;
   border: 1px;
   border-color: ${(props) => props.theme.colors.containerBorder};
   border-radius: 10px;
-  background-color: white
+  background-color: white;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content:center
+  justify-content: center;
   width: 85%;
   height: 100px;
 `;

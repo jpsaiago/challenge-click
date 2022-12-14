@@ -3,7 +3,7 @@ import { ScrollView, View } from "react-native";
 import { githubApi } from "../../services/githubApi";
 import { User } from "../../types/user";
 import { RepoCard } from "../RepoCard";
-import { ListHeader } from "./styles";
+import { ErrorMessage, ListHeader } from "./styles";
 
 interface Props {
   user: string;
@@ -33,16 +33,34 @@ export function RepoList({ user }: Props) {
     getRepos();
   }, []);
 
+  if (isLoading) {
+    return (
+      <View style={{ display: "flex", alignItems: "center" }}>
+        <ListHeader>repositórios</ListHeader>
+      </View>
+    );
+  }
+
+  if (isError) {
+    return (
+      <ErrorMessage>
+        ✖ Não foi possível recuperar os repositórios desse usuário
+      </ErrorMessage>
+    );
+  }
+
   if (repos) {
     return (
-      <ScrollView
-        contentContainerStyle={{ display: "flex", alignItems: "center" }}
-      >
+      <>
         <ListHeader>repositórios</ListHeader>
-        {repos.map((repo, index) => (
-          <RepoCard key={index} repo={repo} />
-        ))}
-      </ScrollView>
+        <ScrollView
+          contentContainerStyle={{ display: "flex", alignItems: "center" }}
+        >
+          {repos.map((repo, index) => (
+            <RepoCard key={index} repo={repo} />
+          ))}
+        </ScrollView>
+      </>
     );
   }
 

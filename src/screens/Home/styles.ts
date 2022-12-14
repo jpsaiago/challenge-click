@@ -5,7 +5,7 @@ export const HomeContainer = styled.View`
   width: 100%;
   display: flex;
   align-items: center;
-  padding-top: 30px
+  padding-top: 20px
   background-color: ${(props) => props.theme.colors.background};
 `;
 
@@ -13,7 +13,7 @@ export const LogoContainer = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 
 export const LogoText = styled.Text`
@@ -24,7 +24,15 @@ export const LogoText = styled.Text`
 `;
 
 export const EmptyResults = styled.View`
-  margin-top: 15px;
+  margin-top: 10px;
   width: 85%;
   height: 100px;
+`;
+
+export const HistoryTitle = styled.Text`
+  width: 85%;
+  margin-top: 5px;
+  font-family: fredoka;
+  font-size: 16px;
+  color: ${(props) => props.theme.colors.font?.[200]};
 `;

@@ -4,13 +4,15 @@ import styled from "styled-components/native";
 export const BasicInfoContainer = styled.View`
   height: 20%;
   display: flex;
-  padding: 0px 10px
+  padding: 0px 10px;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 `;
 
 // Dimensão e posicionamento da imagem de perfil
 export const PictureContainer = styled.View`
-  width: 35%;
+  width: 30%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -24,10 +26,10 @@ export const ProfilePicture = styled.Image`
 
 //Dimensão e posicionamento das informações básicas do usuário
 export const InfoTextContainer = styled.View`
+  width: 55%;
   display: flex;
   justify-content: center;
   height: 100%;
-  width: 65%;
 `;
 
 export const LoginTag = styled.Text`

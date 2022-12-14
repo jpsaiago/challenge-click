@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, View, Text } from "react-native";
 import { HistoryContext } from "../../contexts/historyContext";
 import { SearchResult } from "../SearchResult";
 
