@@ -5,9 +5,9 @@ import { useState } from "react";
 import { Text } from "react-native";
 import { useColorScheme } from "react-native/";
 import { ThemeProvider } from "styled-components/native";
+import { HistoryContext } from "./src/contexts/historyContext";
 import { UserContext } from "./src/contexts/userContext";
 import { Routes } from "./src/Routes";
-
 import { theme } from "./src/theme/theme";
 import { User } from "./src/types/user";
 
@@ -15,6 +15,7 @@ export default function App() {
   /* Armazena o estado do usuário atualmente selecionado no topo da árvore de componentes
   para ser repassado via Context conforme o necessário */
   const [user, setUser] = useState<User.profile | null>(null);
+  const [history, setHistory] = useState<User.profile[]>([]);
 
   //Retorna o tema atual do aparelho para aplicar os diferentes temas
   const colorMode = useColorScheme();
@@ -36,7 +37,11 @@ export default function App() {
     <NavigationContainer>
       <ThemeProvider theme={colorMode === "dark" ? theme.dark : theme.light}>
         <UserContext.Provider value={{ profile: user, setProfile: setUser }}>
-          <Routes />
+          <HistoryContext.Provider
+            value={{ history: history, setHistory: setHistory }}
+          >
+            <Routes />
+          </HistoryContext.Provider>
         </UserContext.Provider>
       </ThemeProvider>
     </NavigationContainer>

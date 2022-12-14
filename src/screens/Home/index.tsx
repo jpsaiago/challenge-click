@@ -3,6 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useContext, useEffect, useState } from "react";
 import { StatusBar, Text } from "react-native";
 import Logo from "../../../assets/svgs/logoHubusca.svg";
+import SearchHistory from "../../components/SearchHistory";
 import { SearchInput } from "../../components/SearchInput";
 import { SearchResult } from "../../components/SearchResult";
 import { UserContext } from "../../contexts/userContext";
@@ -84,6 +85,7 @@ export function Home() {
         ) : (
           <EmptyResults />
         )}
+        <SearchHistory />
       </HomeContainer>
     </>
   );

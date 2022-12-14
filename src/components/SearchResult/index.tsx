@@ -1,8 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import React from "react";
+import React, { useContext } from "react";
 import { Pressable, View } from "react-native";
 import LocationPin from "../../../assets/svgs/locationPin.svg";
+import { HistoryContext } from "../../contexts/historyContext";
+import { UserContext } from "../../contexts/userContext";
 import { StackParamList } from "../../Routes";
 import { User } from "../../types/user";
 import {
@@ -22,16 +24,18 @@ type HomeNavigationProp = NativeStackNavigationProp<StackParamList, "Home">;
 interface Props {
   profile: User.profile | null;
   isLoading: boolean;
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsLoading: CallableFunction;
 }
 
 export function SearchResult({ profile, isLoading, setIsLoading }: Props) {
+  const { history, setHistory } = useContext(HistoryContext);
+  const { setProfile } = useContext(UserContext);
   const navigation = useNavigation<HomeNavigationProp>();
 
   if (isLoading) {
     return (
       <ResultContainer>
-        <ErrorMessage>carregando...</ErrorMessage>
+        <ErrorMessage>Carregando...</ErrorMessage>
       </ResultContainer>
     );
   }
@@ -44,9 +48,19 @@ export function SearchResult({ profile, isLoading, setIsLoading }: Props) {
     );
   }
 
+  function handlePress() {
+    if (!history?.some((user) => user.login == profile?.login) && profile) {
+      const copy = Array.from(history);
+      copy.unshift(profile);
+      setHistory(copy);
+    }
+    setProfile(profile);
+    navigation.navigate("Profile");
+  }
+
   return (
     <ResultContainer>
-      <Pressable onPress={() => navigation.navigate("Profile")}>
+      <Pressable onPress={handlePress}>
         <ResultPicture
           source={{ uri: profile.avatar_url }}
           onLoad={() => setIsLoading(false)}
