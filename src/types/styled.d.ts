@@ -6,8 +6,10 @@ declare module "styled-components/native" {
       textField: string;
       highlight: string;
       background: string;
-      containerBorder?: string;
-      font?: {
+      containerBorder: string;
+      containerBackground: string;
+      statusBarColor: string;
+      font: {
         "100": string;
         "200": string;
         "300": string;

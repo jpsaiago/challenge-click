@@ -6,7 +6,7 @@ export const ResultContainer = styled.View`
   border: 1px;
   border-color: ${(props) => props.theme.colors.containerBorder};
   border-radius: 10px;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.containerBackground};
   display: flex;
   flex-direction: row;
   align-items: center;

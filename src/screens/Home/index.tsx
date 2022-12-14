@@ -1,7 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useContext, useEffect, useState } from "react";
-import { StatusBar, Text } from "react-native";
 import Logo from "../../../assets/svgs/logoHubusca.svg";
 import SearchHistory from "../../components/SearchHistory";
 import { SearchInput } from "../../components/SearchInput";
@@ -69,31 +68,28 @@ export function Home() {
   }, [navigation]);
 
   return (
-    <>
-      <StatusBar backgroundColor="#252E32" />
-      <HomeContainer>
-        <LogoContainer>
-          <Logo width={50} height={50} color="#838A8E" />
-          <LogoText>hubusca</LogoText>
-        </LogoContainer>
-        <SearchInput
-          value={input}
-          onChangeText={handleInput}
-          width="85%"
-          placeholder="Insira um nome de usuário"
+    <HomeContainer>
+      <LogoContainer>
+        <Logo width={50} height={50} color="#838A8E" />
+        <LogoText>hubusca</LogoText>
+      </LogoContainer>
+      <SearchInput
+        value={input}
+        onChangeText={handleInput}
+        width="85%"
+        placeholder="Insira um nome de usuário"
+      />
+      {input ? (
+        <SearchResult
+          profile={profile}
+          setIsLoading={setIsLoading}
+          isLoading={isLoading}
         />
-        {input ? (
-          <SearchResult
-            profile={profile}
-            setIsLoading={setIsLoading}
-            isLoading={isLoading}
-          />
-        ) : (
-          <EmptyResults />
-        )}
-        <HistoryTitle>histórico</HistoryTitle>
-        <SearchHistory />
-      </HomeContainer>
-    </>
+      ) : (
+        <EmptyResults />
+      )}
+      <HistoryTitle>histórico</HistoryTitle>
+      <SearchHistory />
+    </HomeContainer>
   );
 }

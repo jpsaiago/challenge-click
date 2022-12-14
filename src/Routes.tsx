@@ -21,7 +21,7 @@ export function Routes() {
         component={Home}
         options={{
           headerStyle: {
-            backgroundColor: `${colorMode == "light" ? "#252E32" : "white"}`,
+            backgroundColor: `${colorMode == "light" ? "#252E32" : "#202020"}`,
           },
           title: "",
         }}
@@ -31,7 +31,7 @@ export function Routes() {
         component={Profile}
         options={{
           headerStyle: {
-            backgroundColor: `${colorMode == "light" ? "#252E32" : "white"}`,
+            backgroundColor: `${colorMode == "light" ? "#252E32" : "#202020"}`,
           },
           title: "",
           headerTintColor: "white",

@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useState } from "react";
-import { Text } from "react-native";
+import { StatusBar, Text } from "react-native";
 import { useColorScheme } from "react-native/";
 import { ThemeProvider } from "styled-components/native";
 import { HistoryContext } from "./src/contexts/historyContext";
@@ -35,6 +35,13 @@ export default function App() {
 
   return (
     <NavigationContainer>
+      <StatusBar
+        backgroundColor={
+          colorMode == "dark"
+            ? theme.dark.colors.statusBarColor
+            : theme.light.colors.statusBarColor
+        }
+      />
       <ThemeProvider theme={colorMode === "dark" ? theme.dark : theme.light}>
         <UserContext.Provider value={{ profile: user, setProfile: setUser }}>
           <HistoryContext.Provider

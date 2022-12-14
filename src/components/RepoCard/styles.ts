@@ -6,7 +6,7 @@ export const CardContainer = styled.View`
   height: 150px;
   padding: 15px;
   margin: 5px 0px;
-  background-color: white;
+  background-color: ${(props) => props.theme.colors.containerBackground};
   border: 1px;
   display: flex;
   border-radius: 10px;
