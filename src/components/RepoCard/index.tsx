@@ -12,7 +12,7 @@ import {
   DateContainer,
 } from "./styles";
 import dayjs from "dayjs";
-import * as WebBrowser from "expo-web-browser";
+import * as Linking from "expo-linking";
 
 interface Props {
   repo: User.repo;
@@ -27,7 +27,7 @@ export function RepoCard({ repo }: Props) {
     <CardContainer>
       <Pressable
         onPress={async () => {
-          await WebBrowser.openBrowserAsync(repo.html_url);
+          Linking.openURL(repo.html_url);
         }}
         style={{ height: "100%" }}
       >
