@@ -22,3 +22,15 @@ export const LogoText = styled.Text`
   font-family: hubot;
   color: #838A8E;
 `;
+
+export const HistoryView = styled.View`
+  width: 100%;
+  height: 100%;
+  margin-top: 15px;
+`;
+
+export const EmptyResults = styled.View`
+  margin-top: 15px;
+  width: 85%;
+  height: 100px;
+`;

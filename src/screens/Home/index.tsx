@@ -1,16 +1,28 @@
-import React, { useContext, useState } from "react";
-import { StatusBar } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import React, { useContext, useEffect, useState } from "react";
+import { StatusBar, Text } from "react-native";
 import Logo from "../../../assets/svgs/logoHubusca.svg";
 import { SearchInput } from "../../components/SearchInput";
 import { SearchResult } from "../../components/SearchResult";
 import { UserContext } from "../../contexts/userContext";
 import { useDebounce } from "../../hooks/useDebounce";
+import { StackParamList } from "../../Routes";
 import { userApi } from "../../services/usersApi";
-import { HomeContainer, LogoContainer, LogoText } from "./styles";
+import {
+  EmptyResults,
+  HistoryView,
+  HomeContainer,
+  LogoContainer,
+  LogoText,
+} from "./styles";
+
+type HomeNavigationProp = NativeStackNavigationProp<StackParamList, "Home">;
 
 export function Home() {
-  const [input, setInput] = useState("");
+  const navigation = useNavigation<HomeNavigationProp>();
   const { profile, setProfile } = useContext(UserContext);
+  const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const queryUsers = useDebounce(async (text: string) => {
@@ -21,11 +33,12 @@ export function Home() {
         usuário selecionado com o resultado */
         setProfile({
           avatar_url: response.avatar_url,
-          followers: response.followers,
-          location: response.location,
           name: response.name,
-          public_repos: response.public_repos,
+          id: response.id,
           login: response.login,
+          location: response.location,
+          followers: response.followers,
+          public_repos: response.public_repos,
           repos_url: response.repos_url,
         });
         setIsLoading(false);
@@ -46,6 +59,14 @@ export function Home() {
     queryUsers(text);
   }
 
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      setProfile(null);
+      setInput("");
+    });
+    return unsubscribe;
+  }, [navigation]);
+
   return (
     <>
       <StatusBar backgroundColor="#252E32" />
@@ -60,13 +81,20 @@ export function Home() {
           width="85%"
           placeholder="Insira um nome de usuário"
         />
-        {input && (
+        {input ? (
           <SearchResult
-            user={profile}
+            profile={profile}
             setIsLoading={setIsLoading}
             isLoading={isLoading}
           />
+        ) : (
+          <EmptyResults />
         )}
+        <HistoryView>
+          <Text style={{ margin: 15, fontFamily: "hubot", color: "darkgray" }}>
+            histórico
+          </Text>
+        </HistoryView>
       </HomeContainer>
     </>
   );

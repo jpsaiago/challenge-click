@@ -3,7 +3,12 @@ import { useColorScheme } from "react-native";
 import { Home } from "./screens/Home";
 import { Profile } from "./screens/Profile";
 
-const Stack = createNativeStackNavigator();
+//Tipo exportado para ser usado na hora de invocar a navegação em outros componentes
+export type StackParamList = {
+  Home: undefined;
+  Profile: undefined;
+};
+const Stack = createNativeStackNavigator<StackParamList>();
 
 export function Routes() {
   //Retorna o tema atual do aparelho para aplicar os diferentes temas
@@ -21,7 +26,17 @@ export function Routes() {
           title: "",
         }}
       />
-      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          headerStyle: {
+            backgroundColor: `${colorMode == "light" ? "#252E32" : "white"}`,
+          },
+          title: "",
+          headerTintColor: "white",
+        }}
+      />
     </Stack.Navigator>
   );
 }

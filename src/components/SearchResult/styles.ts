@@ -10,14 +10,15 @@ export const ResultContainer = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content:center
   width: 85%;
   height: 100px;
 `;
 
 export const ResultPicture = styled.Image`
   border-radius: 100px;
-  width: 65px;
-  height: 65px;
+  width: 60px;
+  height: 60px;
   object-fit: contain;
   margin-right: 10px;
 `;
@@ -25,12 +26,11 @@ export const ResultPicture = styled.Image`
 export const InfoContainer = styled.View`
   height: 100%;
   flex-grow: 1;
-  justify-content: center;
 `;
 
 export const NameTag = styled.Text`
   font-family: fredoka;
-  font-size: 16px;
+  font-size: 14px;
   color: ${(props) => props.theme.colors.font?.[300]};
 `;
 
@@ -49,7 +49,7 @@ export const LocationContainer = styled.View`
 
 export const LocationTag = styled.Text`
   font-family: fredoka;
-  font-size: 16px;
+  font-size: 14px;
   color: ${(props) => props.theme.colors.font?.[200]};
   margin-right: 4px;
 `;
@@ -57,6 +57,5 @@ export const LocationTag = styled.Text`
 export const ErrorMessage = styled.Text`
   font-family: fredoka;
   font-size: 18px;
-  margin-top: 20px;
   color: ${(props) => props.theme.colors.font?.[100]};
 `;
