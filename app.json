@@ -24,11 +24,17 @@
       "userInterfaceStyle": "automatic",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#2B2929"
+      },
+      "package": "com.jpsaiago.hubusca"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3eb763b0-6c18-4d20-a67a-2b512d7ec605"
+      }
     }
   }
 }
