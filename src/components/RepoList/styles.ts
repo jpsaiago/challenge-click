@@ -17,3 +17,8 @@ export const ErrorMessage = styled.Text`
   width: 85%;
   color: ${(props) => props.theme.colors.font?.[300]};
 `;
+
+export const ListFooter = styled.View`
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;

@@ -14,6 +14,7 @@ async function searchUser(query: string) {
 async function getRepos(query: string, page: number) {
   const response = await requester.get<User.repo[]>(`/users/${query}/repos`, {
     params: {
+      per_page: 10,
       page: page,
     },
   });
